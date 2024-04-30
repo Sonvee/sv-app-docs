@@ -2,7 +2,8 @@ import { defineConfig } from "vitepress";
 import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks } from "./theme/data/menu";
 
 export default defineConfig({
-  base: "/docs",
+  // base: "/docs",
+  base: "/",
   outDir: "../dist",
   lang: "zh-CN",
   title: "sv-app",
