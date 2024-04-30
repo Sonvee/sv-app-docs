@@ -2,9 +2,9 @@ import { defineConfig } from "vitepress";
 import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks } from "./theme/data/menu";
 
 export default defineConfig({
-  // base: "/docs",
-  base: "/",
-  outDir: "../dist",
+  // base: "/docs", // uni托管
+  base: "/", // github托管
+  outDir: "../h5",
   lang: "zh-CN",
   title: "sv-app",
   description: "一个基于 vue3 + uniapp + unicloud 开发的框架",
