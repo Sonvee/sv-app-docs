@@ -2,20 +2,24 @@ import { defineConfig } from "vitepress";
 import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks } from "./theme/data/menu";
 
 const deployConfig = {
+  // 常规部署
   normal: {
     base: "",
     outDir: "../docs-h5",
   },
+  // GithubPages部署
   github: {
     base: "/sv-app-docs/docs-github",
     outDir: "../docs-github",
   },
+  // uni部署
   uni: {
     base: "/docs-uni",
     outDir: "../docs-uni",
   },
 };
 
+// 部署模式 - 打包时需要切换三种模式依次进行打包，再分别发布对应平台
 const platform = "normal";
 
 export default defineConfig({
