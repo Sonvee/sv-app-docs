@@ -3,7 +3,7 @@ import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks
 
 const deployConfig = {
   normal: {
-    base: "/",
+    base: "",
     outDir: "../docs-h5",
   },
   github: {
