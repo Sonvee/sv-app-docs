@@ -3,7 +3,7 @@ import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks
 
 export default defineConfig({
   // base: "/docs", // uni托管
-  base: "/", // github托管
+  base: "/sv-app-docs/h5/", // github托管
   outDir: "../h5",
   lang: "zh-CN",
   title: "sv-app",
