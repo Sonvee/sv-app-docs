@@ -1,13 +1,26 @@
 import { defineConfig } from "vitepress";
 import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks } from "./theme/data/menu";
 
-const base_url = "/"; // 常规h5部署
-// const base_url = "/docs-h5"; // uni部署
-// const base_url = "/sv-app-docs/docs-h5"; // github部署
+const deployConfig = {
+  normal: {
+    base: "/",
+    outDir: "../docs-h5",
+  },
+  github: {
+    base: "/sv-app-docs/docs-h5",
+    outDir: "../docs-github",
+  },
+  uni: {
+    base: "/docs-h5",
+    outDir: "../docs-uni",
+  },
+};
+
+const platform = "normal";
 
 export default defineConfig({
-  base: base_url, // github部署
-  outDir: "../docs-h5",
+  base: deployConfig[platform].base, // github部署
+  outDir: deployConfig[platform].outDir,
   lang: "zh-CN",
   title: "sv-app",
   description: "一个基于 vue3 + uniapp + unicloud 开发的框架",
