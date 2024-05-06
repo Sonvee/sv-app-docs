@@ -1,9 +1,11 @@
 import { defineConfig } from "vitepress";
 import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks } from "./theme/data/menu";
 
+// const base_url = "/docs"; // uni部署
+const base_url = "/sv-app-docs/h5/"; // github部署
+
 export default defineConfig({
-  // base: "/docs", // uni部署
-  base: "/sv-app-docs/h5/", // github部署
+  base: base_url, // github部署
   outDir: "../h5",
   lang: "zh-CN",
   title: "sv-app",
@@ -22,7 +24,7 @@ export default defineConfig({
   },
 
   head: [
-    ["link", { rel: "icon", href: "/docs/favicon.ico" }], // 需要加上根目录前缀，否则资源访问不到
+    ["link", { rel: "icon", href: base_url + "/favicon.ico" }], // 需要加上根目录前缀，否则资源访问不到
     [
       "script",
       {},
