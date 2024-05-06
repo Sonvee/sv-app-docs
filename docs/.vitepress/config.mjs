@@ -38,7 +38,7 @@ export default defineConfig({
   },
 
   head: [
-    ["link", { rel: "icon", href: base_url + "/favicon.ico" }], // 需要加上根目录前缀，否则资源访问不到
+    ["link", { rel: "icon", href: deployConfig[platform].base + "/favicon.ico" }], // 需要加上根目录前缀，否则资源访问不到
     [
       "script",
       {},
