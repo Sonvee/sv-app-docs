@@ -2,8 +2,8 @@ import { defineConfig } from "vitepress";
 import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks } from "./theme/data/menu";
 
 export default defineConfig({
-  // base: "/docs", // uni托管
-  base: "/sv-app-docs/h5/", // github托管
+  // base: "/docs", // uni部署
+  base: "/sv-app-docs/h5/", // github部署
   outDir: "../h5",
   lang: "zh-CN",
   title: "sv-app",
