@@ -7,11 +7,11 @@ const deployConfig = {
     outDir: "../docs-h5",
   },
   github: {
-    base: "/sv-app-docs/docs-h5",
+    base: "/sv-app-docs/docs-github",
     outDir: "../docs-github",
   },
   uni: {
-    base: "/docs-h5",
+    base: "/docs-uni",
     outDir: "../docs-uni",
   },
 };
