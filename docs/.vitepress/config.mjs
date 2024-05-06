@@ -6,7 +6,7 @@ const base_url = "/sv-app-docs/h5"; // github部署
 
 export default defineConfig({
   base: base_url, // github部署
-  outDir: "../h5",
+  outDir: "../docs-h5",
   lang: "zh-CN",
   title: "sv-app",
   description: "一个基于 vue3 + uniapp + unicloud 开发的框架",
