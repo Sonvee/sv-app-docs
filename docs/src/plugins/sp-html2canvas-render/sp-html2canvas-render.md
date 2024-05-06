@@ -23,12 +23,12 @@
 ## 前言
 
 1. 首先你可能需要了解 [`renderjs`](https://uniapp.dcloud.net.cn/tutorial/renderjs.html#renderjs) 是什么，以及 renderjs 的平台差异与兼容性。
-2. html2canvas 的相关配置：![html2canvas配置](https://img-cdn-tx.dcloud.net.cn/stream/plugin_screens/d2692720-6f1e-11ee-95b9-79f6f9a1eb73_1.png/webp?&v=1701221874)
+2. html2canvas 的相关配置：![html2canvas配置](image-1.png)
 
 ## 插件兼容性
 
 1. 由于 renderjs 目前只支持 App 和 H5，所以本插件也只能支持 App 和 H5。
-   ![alt text](image.png)
+   ![renderjs兼容](image.png)
 2. 本插件基于 html2canvas，不支持小程序，微信小程序请移步 [`wxml2cavnas`](https://developers.weixin.qq.com/community/develop/article/doc/000040894e4360456ff7654be56013)
 
 ## prop 参数
