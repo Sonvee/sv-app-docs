@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
 import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks } from "./theme/data/menu";
 
-// const base_url = "/docs"; // uni部署
+// const base_url = "/docs-h5"; // uni部署
 const base_url = "/sv-app-docs/docs-h5"; // github部署
 
 export default defineConfig({
