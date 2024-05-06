@@ -41,7 +41,7 @@ export default defineConfig({
   themeConfig: {
     logo: "/logo.png",
     siteTitle: "sv-app",
-    lastUpdatedText: "最后更新",
+    lastUpdatedText: "最后更新"+ JSON.stringify(process),
 
     // 导航栏
     nav: [
