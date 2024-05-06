@@ -19,7 +19,7 @@ const deployConfig = {
 const platform = "normal";
 
 export default defineConfig({
-  base: deployConfig[platform].base, // github部署
+  base: deployConfig[platform].base,
   outDir: deployConfig[platform].outDir,
   lang: "zh-CN",
   title: "sv-app",
