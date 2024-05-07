@@ -43,12 +43,14 @@
    - 接口路径：`/api/[自定义接口路径]/[云对象名]`，例如：`/api/test/testList`，此处的 `/api/` 作为规范，建议所有 url 化的云对象统一加上该前缀
    - 可自行在 `云对象` -> `详情` -> `云函数 URL 化` 中手动配置接口路径：![alt text](image-1.png)
    - 若想使用代码来配置接口路径，则要在对应云对象的 `package.json` 文件中配置 [`cloudfunction-config`](https://doc.dcloud.net.cn/uniCloud/cf-functions.html#cloudfunction-config) 项，示例：
+
      ```json
      "cloudfunction-config": {
       "path": "/api/test",
       // ... 其他参数
      }
      ```
+
    - 请求时接口的 url 示例：
 
      ```javascript
@@ -66,8 +68,20 @@
      更多详情请移步 [`sv-configs`](/src/plugins/sv-configs/sv-configs.md)
 
 6. 接口权限问题：
+
    - 使用 [url 化](https://doc.dcloud.net.cn/uniCloud/http.html#cloudobject) 将会导致 DB Schema 中相关权限失效，对此我已在 `sv-handler` 中重新校验了 token，并重新赋予了接口权限功能，在 `sv-api-test` 等云对象的 `index.obj.js` 入口文件中都有体现，详情还请移步至云对象源码中查看与仿写。
+
+   - 权限校验规则如下：
+
+     | 权限   | 说明                                  |
+     | ------ | ------------------------------------- |
+     | open   | 开放                                  |
+     | easy   | 需登录                                |
+     | normal | 需 API_READ 只读或 API_WRITE 读写权限 |
+     | strict | 需 API_WRITE 读写权限                 |
+
    - 此处只贴出部分代码：
+
      ```javascript
      // token身份安全校验
      const WHITE_LIST = []; // 校验白名单，例如'/testList'

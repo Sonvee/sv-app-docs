@@ -6,8 +6,8 @@
 
 ## 安装
 
-1. [插件市场](https://ext.dcloud.net.cn/plugin?id=15050) 中点击 `下载插件并导入HBuildeX`
-2. 在你的项目中安装 `html2canvas` 的 node 包
+1. [插件市场](https://ext.dcloud.net.cn/plugin?id=15050) 中点击 `下载插件并导入HBuildeX`。
+2. 在你的项目中安装 `html2canvas` 的 node 包。
    ::: code-group
    ```bash [npm]
    npm install html2canvas
@@ -29,7 +29,7 @@
 
 1. 由于 renderjs 目前只支持 App 和 H5，所以本插件也只能支持 App 和 H5。
    ![renderjs兼容](image.png)
-2. 本插件基于 html2canvas，不支持小程序，微信小程序请移步 [`wxml2cavnas`](https://developers.weixin.qq.com/community/develop/article/doc/000040894e4360456ff7654be56013)
+2. 本插件基于 html2canvas，不支持小程序，微信小程序请移步 [`wxml2cavnas`](https://developers.weixin.qq.com/community/develop/article/doc/000040894e4360456ff7654be56013)。
 
 ## prop 参数
 
