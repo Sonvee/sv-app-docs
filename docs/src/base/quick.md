@@ -16,11 +16,10 @@
 
 您在阅读本篇博客之前，将默认您已了解如下相关基础知识：
 
-1. [Vue3](https://cn.vuejs.org)
+1. [Vue2](https://v2.cn.vuejs.org/) / [Vue3](https://cn.vuejs.org)
 2. [uni-app](https://uniapp.dcloud.net.cn)
 3. [uniCloud](https://doc.dcloud.net.cn/uniCloud) (在后文中服务端部署云服务空间会有所讲解)
 4. [uni_modules](https://uniapp.dcloud.net.cn/plugin/uni_modules.html#uni-modules)
-5. [npm](https://www.npmjs.com)
 
 ## 立即上手
 

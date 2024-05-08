@@ -163,6 +163,10 @@ export const pluginsMenu = {
       link: "/src/plugins/sv-dynamic-input/sv-dynamic-input",
     },
     {
+      text: "基于uni-editor的富文本插件",
+      link: "/src/plugins/sp-editor/sp-editor",
+    },
+    {
       text: "html2canvas+renderjs截图",
       link: "/src/plugins/sp-html2canvas-render/sp-html2canvas-render",
     },
