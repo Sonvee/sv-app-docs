@@ -36,12 +36,12 @@
 
 ## prop 参数
 
-| 参数        | 类型    | 默认值 | 必填 | 说明                                                  |
-| ----------- | ------- | ------ | ---- | ----------------------------------------------------- |
-| domId       | String  |        | 是   | 要渲染 dom 的 id                                      |
-| showLoading | Boolean | true   | 否   | 是否显示导出 loading                                  |
-| pdfFileName | String  |        | 否   | 导出的 pdf 文件名，默认使用当前时间戳，已自动拼接后缀 |
-| autoOpen    | Boolean | true   | 否   | 是否自动打开文档，默认开启                            |
+| 参数        | 类型    | 默认值 | 必填 | 说明                                                                              |
+| ----------- | ------- | ------ | ---- | --------------------------------------------------------------------------------- |
+| domId       | String  |        | 是   | 要渲染 dom 的 id                                                                  |
+| showLoading | Boolean | true   | 否   | 是否显示导出 loading                                                              |
+| pdfFileName | String  |        | 否   | 导出的 pdf 文件名，默认使用当前时间戳，已自动拼接后缀（仅 App 端可用，H5 端无效） |
+| autoOpen    | Boolean | true   | 否   | 是否自动打开文档，默认开启                                                        |
 
 ## emit 事件
 
@@ -55,12 +55,13 @@
 返回的是 base64 字符串，如果需要转成路径的，请使用插件内置的 base64ToPath 方法进行转换
 
 ```javascript
-import { base64ToPath } from '@/uni_modules/sp-html2pdf-render/components/sp-html2pdf-render/util.js'
-renderOver(e) {
-    // e为导出图片的base64
-    base64ToPath(e).then((res) => {
-        console.log('==== path :', res)
-    })
+import { base64ToPath } from "@/uni_modules/sp-html2pdf-render/utils/index.js";
+
+function beforeSavePDF(e) {
+  // e为导出的pdf（base64）
+  base64ToPath(e).then((res) => {
+    console.log("==== path :", res);
+  });
 }
 ```
 

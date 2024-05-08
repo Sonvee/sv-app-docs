@@ -2,8 +2,8 @@ import { defineConfig } from "vitepress";
 import { linkMenu, baseMenu, frameMenu, pluginsMenu, componentsMenu, socialLinks } from "./theme/data/menu";
 
 const deployConfig = {
-  // 常规部署
-  normal: {
+  // h5部署
+  h5: {
     base: "",
     outDir: "../docs-h5",
   },
@@ -20,7 +20,7 @@ const deployConfig = {
 };
 
 // 部署模式 - 打包时需要切换三种模式依次进行打包，再分别发布对应平台
-const platform = "github";
+const platform = "h5";
 
 export default defineConfig({
   base: deployConfig[platform].base,

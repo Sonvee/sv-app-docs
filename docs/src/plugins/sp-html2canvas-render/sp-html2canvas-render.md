@@ -47,12 +47,13 @@
 返回的是 base64 字符串，如果需要转成路径的，请使用插件内置的 base64ToPath 方法进行转换
 
 ```javascript
-import { base64ToPath } from '@/uni_modules/sp-html2canvas-render/components/sp-html2canvas-render/util.js'
-renderOver(e) {
-    // e为导出图片的base64
-    base64ToPath(e).then((res) => {
-        console.log('==== path :', res)
-    })
+import { base64ToPath } from "@/uni_modules/sp-html2canvas-render/utils/index.js";
+
+function renderOver(e) {
+  // e为导出图片的base64
+  base64ToPath(e).then((res) => {
+    console.log("==== path :", res);
+  });
 }
 ```
 
@@ -182,7 +183,7 @@ function renderOver(e) {
    - 插件内置了 `base64ToPath` 方法，将 base64 转换为临时图片路径，可用于上传到服务器。
 
      ```javascript
-     import { base64ToPath } from "@/uni_modules/sp-html2canvas-render/components/sp-html2canvas-render/util.js";
+     import { base64ToPath } from "@/uni_modules/sp-html2canvas-render/utils/index.js";
 
      function renderOver(e) {
        base64ToPath(e).then((res) => {
