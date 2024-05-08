@@ -1,5 +1,15 @@
 # 🚀 快速开始
 
+## 文档地址
+
+- [地址一](https://sonvee.github.io/sv-app-docs/docs-github)
+- [地址二](https://sv-app-docs.pages.dev)
+- [地址三](https://sv-app-docs.4everland.app)
+- [地址四](https://sv-app-docs.vercel.app) (需要梯子)
+- [地址五](https://static-mp-74bfcbac-6ba6-4f39-8513-8831390ff75a.next.bspapp.com/docs-uni) (有 IP 限制)
+
+## 简介
+
 `sv-app` 基于 `vue3` + `uniapp` + `unicloud` 构建，由 `sv-service` 服务端使用 [unicloud 云对象 url 化](https://doc.dcloud.net.cn/uniCloud/http.html#cloudobject) 编写 api 接口，以便于前端调用，尽可能多的实现前后端分离式开发。部分模块化的功能由基于 [uni_modules](https://uniapp.dcloud.net.cn/plugin/uni_modules.html#uni-modules) 规范的插件实现，便于管理与一键更新，同时也极大的提升了代码复用性，因此在编写插件时需要尽可能多地做到多端兼容。本篇文章将在下文对 `sv-service`、`sv-client`、`sv-admin` 统称为三端。
 
 ## 基础知识
@@ -14,13 +24,13 @@
 
 ## 立即上手
 
-### DCloud 插件市场导入
+1. 方式一：DCloud 插件市场导入
 
-在本人的 [插件空间](https://ext.dcloud.net.cn/publisher?id=1173575) 中找到 [sv-service](https://ext.dcloud.net.cn/plugin?id=16529)、 [sv-client](https://ext.dcloud.net.cn/plugin?id=16530)、 [sv-admin](https://ext.dcloud.net.cn/plugin?id=16531) 三端，分别一键导入 [HBuilderX](https://www.dcloud.io/hbuilderx.html) 即可。
+   在本人的 [插件空间](https://ext.dcloud.net.cn/publisher?id=1173575) 中找到 [sv-service](https://ext.dcloud.net.cn/plugin?id=16529)、 [sv-client](https://ext.dcloud.net.cn/plugin?id=16530)、 [sv-admin](https://ext.dcloud.net.cn/plugin?id=16531) 三端，分别一键导入 [HBuilderX](https://www.dcloud.io/hbuilderx.html) 即可。
 
-### 代码仓库
+2. 方式二：Git 代码仓库
 
-直接将 `sv-app` 的 [代码仓库](https://gitee.com/Sonve/sv-app) 克隆到本地， 分别导入至 HBuilderX 中打开即可 (不要直接导入 sv-app 目录，而是分别导入 sv-app 下的三端)。
+   直接将 `sv-app` 的 [代码仓库](https://gitee.com/Sonve/sv-app) 克隆到本地， 分别导入至 HBuilderX 中打开即可 (不要直接导入 sv-app 目录，而是分别导入 sv-app 中三端的目录)。
 
 ## 下一步
 
@@ -29,3 +39,4 @@
 - [sv-service](/src/frame/sv-service/sv-service) 服务端
 - [sv-client](/src/frame/sv-client/sv-client) 客户端
 - [sv-admin](/src/frame/sv-admin/sv-admin) 管理端
+- [其他插件](/src/plugins/intro/intro.html)
