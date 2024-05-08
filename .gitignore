@@ -8,6 +8,7 @@
 node_modules/
 cache/
 dist/
+docs-uni/
 
 # package file
 *.war
