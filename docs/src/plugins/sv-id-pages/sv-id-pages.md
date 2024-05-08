@@ -101,26 +101,21 @@
   }
   ```
 
-## 相关 api
+- 获取当前用户角色/权限
 
-> api 校验权限说明：（admin 拥有所有权限）
-> | 权限 | 说明 |
-> | --- | --- |
-> | open | 开放 |
-> | easy | 需登录 |
-> | normal | 需 API_READ 只读或 API_WRITE 读写权限 |
-> | strict | 需 API_WRITE 读写权限 |
+  > 使用 `uniCloud.getCurrentUserInfo()` 获取当前登录用户角色权限信息，[查看更多](https://doc.dcloud.net.cn/uniCloud/client-sdk.html#client-getcurrentuserinfo)
 
-### `sv-api-id` 用户模块接口
+## api 接口文档
+
+> [文档链接](https://console-docs.apipost.cn/preview/c3268618df9a75e0/6acb1e9aa56ea56c?target_id=d4b30806-ef67-4c1f-a126-dca17094c7c6)
 
 ## 疑难解答
 
+> 可新建 [`Issue`](https://gitee.com/Sonve/sv-app-docs/issues/new) / [`悬赏`](https://gitee.com/Sonve/sv-app-docs/reward_issues/new) 来 [`发起提问`](https://gitee.com/Sonve/sv-app-docs/issues)
+
 1. 云对象不会部署/部署不成功怎么办？
 
-   > 移步至 [服务端-云服务空间初始化](../../frame/sv-service/sv-service.md#云服务空间初始化)，或者加群讨论吧。
-
-2. 插件如何更新？
-   > 鼠标右键 `sv-id-pages` 目录，点击 `从插件市场更新`，以确保插件最新。
+   - 移步至 [服务端-云服务空间初始化](../../frame/sv-service/sv-service.md#云服务空间初始化)，或者加群讨论吧。
 
 ## 写在最后
 

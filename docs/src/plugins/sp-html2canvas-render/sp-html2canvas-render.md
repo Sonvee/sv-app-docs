@@ -137,6 +137,8 @@ function renderOver(e) {
 
 ## 疑难解答
 
+> 可新建 [`Issue`](https://gitee.com/Sonve/sv-app-docs/issues/new) / [`悬赏`](https://gitee.com/Sonve/sv-app-docs/reward_issues/new) 来 [`发起提问`](https://gitee.com/Sonve/sv-app-docs/issues)
+
 1. 为什么会报 `toDataURL on HTMLCanvasElement` 的错？
 
    - 如果你要渲染的 dom 盒子中带有不支持跨域的网络图片，html2cavnas 就会报这个画布被污染了的错，需要你的网络图片支持跨域。这里建议要渲染的 dom 盒子中的所有图片（包括网络和本地图片）都经过内置的 `pathToBase64` 或 `urlToBase64` 方法进行转换，base64 可以兼容各端差异，不会存在跨域问题，但是前提是你的网络图片支持跨域，如果你的网络本身就不支持跨域那也没有办法，虽然 html2canvas 提供了相关跨域的配置项，但是实测下来在 uniapp 中无效，所以还是得从解除跨域的根本原因上解决。
