@@ -143,9 +143,12 @@ function renderOver(e) {
 
    - 如果你要渲染的 dom 盒子中带有不支持跨域的网络图片，html2cavnas 就会报这个画布被污染了的错，需要你的网络图片支持跨域。这里建议要渲染的 dom 盒子中的所有图片（包括网络和本地图片）都经过内置的 `pathToBase64` 或 `urlToBase64` 方法进行转换，base64 可以兼容各端差异，不会存在跨域问题，但是前提是你的网络图片支持跨域，如果你的网络本身就不支持跨域那也没有办法，虽然 html2canvas 提供了相关跨域的配置项，但是实测下来在 uniapp 中无效，所以还是得从解除跨域的根本原因上解决。
      :::tip 关于跨域的题外话
+
      - 在 HBuilderX 的内置浏览器中是自动解除了跨域的，所以内置浏览器中可能一切正常，但是真机或者外置浏览器上可能就会报跨域的错了。
      - 有的小伙伴在外置浏览器上直接输入网络图片的链接，觉得能打开显示图片就是没跨域了，其实并不是这个道理。跨域是浏览器的同源策略问题，你从你的 localhost 去访问在线的地址，域名自然就对不上了，浏览器就不允许你访问。直接在浏览器上输入网络图片打开，这自然就是同源的，浏览器也支持你去打开图片。
        :::
+
+   - 如果你的图片是以盒子的 background: url(xxx) 形式作为背景图片的，也需要将其转为 base64 ，示例工程中示例四中有说明。
 
 2. 截出来的图片模糊怎么办？
 
@@ -164,6 +167,33 @@ function renderOver(e) {
      ```
 
    - 还是无法解决？[进群](https://qm.qq.com/cgi-bin/qm/qr?k=HD9IXnUruOa5pplF1jAeQsLb9BNnP_DE&jump_from=webapi&authKey=tk61Q5la3EAprdYcUBD7v0PBly795OTcT4UT36XxqcG7pmhGRpE+yFlt75vQBWeY) 探讨下吧。
+
+3. 报错 `dom盒子未加载成功，请先确保dom渲染完成，再检查你的domId是否有误`
+
+   - 报这个错一般是你的 dom 盒子还没有获取到就开始调用导出了，所以要先确保你指定的盒子先加载完成后再调用 h2cRenderDom 方法渲染导出图片。
+   - 初学者可能常见的原因： ① 在 onLoad 生命周期中调用 h2cRenderDom 渲染导出，此时页面视图并未完全加载好，故报错（加个 [`nextTick`](https://cn.vuejs.org/api/general.html#nexttick) 等页面视图加载完成后执行即可）；② 指定的 dom 盒子被 v-if="false" 给隐藏掉了。
+
+4. 最后生成的格式是 base64，但是我想要图片路径怎么办？
+
+   - 插件内置了 `base64ToPath` 方法，将 base64 转换为临时图片路径，可用于上传到服务器。
+
+     ```javascript
+     import { base64ToPath } from "@/uni_modules/sp-html2canvas-render/components/sp-html2canvas-render/util.js";
+
+     function renderOver(e) {
+       base64ToPath(e).then((res) => {
+         console.log("==== 图片临时路径 :", res);
+         // ...后续处理
+       });
+     }
+     ```
+
+5. 截长图（dom 盒子超出视窗）时截图不全怎么办？
+
+   - 截长图时要注意 css 写法，请仔细参考示例工程中示例一，切勿限制写死了宽高。
+
+6. 截图时 dom 中有部分元素不想被截下来怎么办？
+   - 在要截之前先将该部分元素 v-if="false" 隐藏掉，截完了再改为 true 即可，示例工程中示例一有说明。
 
 ## 写在最后
 
