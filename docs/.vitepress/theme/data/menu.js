@@ -166,6 +166,10 @@ export const pluginsMenu = {
       text: "html2canvas+renderjs截图",
       link: "/src/plugins/sp-html2canvas-render/sp-html2canvas-render",
     },
+    {
+      text: "html2pdf+renderjs导出PDF",
+      link: "/src/plugins/sp-html2pdf-render/sp-html2pdf-render",
+    },
   ],
 };
 
