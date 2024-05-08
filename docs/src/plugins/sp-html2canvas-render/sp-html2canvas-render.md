@@ -175,7 +175,7 @@ function renderOver(e) {
 
 4. 报错 `Cannot read property 'watchExpOver' of undefined`
 
-   - 我猜你是在微信小程序里用了本插件，请看清本文档上述 [`插件兼容性`](#插件兼容性) 描述
+   - 我猜你是在微信小程序里用了本插件，请看清本文档上述 [`插件兼容性`](#插件兼容性) 描述。
 
 5. 最后生成的格式是 base64，但是我想要图片路径怎么办？
 
