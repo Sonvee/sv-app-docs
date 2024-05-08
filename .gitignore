@@ -6,8 +6,8 @@
 
 # system ignore
 node_modules/
-dist/
 cache/
+dist/
 
 # package file
 *.war
