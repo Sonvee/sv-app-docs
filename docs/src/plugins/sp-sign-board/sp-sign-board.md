@@ -194,6 +194,8 @@ function reset() {
 
 1. 尽量不要在 movable-view 中使用，当放大缩小的时候可能会导致签名错位偏移的情况。
 
+2. 在平板设备上开发时，请自行调整横竖屏，以便导出的图片尺寸合适。
+
 ## 疑难解答
 
 > 可新建 [`Issue`](https://gitee.com/Sonve/sv-app-docs/issues/new) / [`悬赏`](https://gitee.com/Sonve/sv-app-docs/reward_issues/new) 来 [`发起提问`](https://gitee.com/Sonve/sv-app-docs/issues)
