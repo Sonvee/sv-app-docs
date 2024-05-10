@@ -174,6 +174,10 @@ export const pluginsMenu = {
       text: "html2pdf+renderjs导出PDF",
       link: "/src/plugins/sp-html2pdf-render/sp-html2pdf-render",
     },
+    {
+      text: "签字版",
+      link: "/src/plugins/sp-sign-board/sp-sign-board",
+    },
   ],
 };
 

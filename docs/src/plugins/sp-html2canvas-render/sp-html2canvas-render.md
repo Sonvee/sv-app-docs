@@ -27,6 +27,12 @@
 
 ## 插件兼容性
 
+> `✔️ 实测可行` `❌ 未兼容` `➖ 未实测`
+
+| Vue2 | Vue3 | H5  | App | 微信小程序 | 支付宝小程序 |
+| :--: | :--: | :-: | :-: | :--------: | :----------: |
+|  ✔️  |  ✔️  | ✔️  | ✔️  |     ❌     |      ❌      |
+
 1. 由于 renderjs 目前只支持 App 和 H5，所以本插件也只能支持 App 和 H5。
    ![renderjs兼容](image.png)
 2. 本插件基于 html2canvas，不支持小程序，微信小程序请移步 [`wxml2cavnas`](https://developers.weixin.qq.com/community/develop/article/doc/000040894e4360456ff7654be56013)。
