@@ -1,4 +1,4 @@
-# sp-sign-board
+# sp-sign-board 签字板
 
 签字板，可添加背景图或动态水印，可适配横竖屏，并将签名生成 base64 格式图片
 

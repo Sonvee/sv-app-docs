@@ -1,4 +1,4 @@
-# sv-id-pages
+# sv-id-pages 用户体系
 
 基于 [`uni-id-pages`](https://ext.dcloud.net.cn/plugin?name=uni-id-pages) 魔改的用户体系，新的易读易修改的界面样式，并稍作精简，更适合二次开发。
 
