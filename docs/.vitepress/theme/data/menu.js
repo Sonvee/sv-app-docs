@@ -182,6 +182,10 @@ export const pluginsMenu = {
       text: "动态录入键值对",
       link: "/src/plugins/sv-dynamic-input/sv-dynamic-input",
     },
+    {
+      text: "返回拦截",
+      link: "/src/plugins/sv-intercept-back/sv-intercept-back",
+    },
   ],
 };
 
