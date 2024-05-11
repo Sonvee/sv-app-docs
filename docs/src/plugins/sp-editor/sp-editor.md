@@ -1,4 +1,4 @@
-# sp-editor 富文本编辑器
+# 富文本编辑器 [`sp-editor`](https://ext.dcloud.net.cn/plugin?id=14726)
 
 基于 uni-app 官方 [`editor`](https://uniapp.dcloud.net.cn/component/editor.html) 编辑器的富文本插件。
 

@@ -1,4 +1,4 @@
-# sp-html2canvas-render DOM 截图
+# DOM 截图 [`sp-html2canvas-render`](https://ext.dcloud.net.cn/plugin?id=15050)
 
 基于 `html2canvas` + `renderjs` 的截图插件，可根据 dom 盒子 id 截图，可截长图。
 

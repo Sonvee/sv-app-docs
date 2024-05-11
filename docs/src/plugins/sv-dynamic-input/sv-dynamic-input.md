@@ -1,4 +1,4 @@
-# sv-dynamic-input 动态录入
+# 动态录入 [`sv-dynamic-input`](https://ext.dcloud.net.cn/plugin?id=15374)
 
 动态录入键值对（适用于表单动态添加字典字段）
 

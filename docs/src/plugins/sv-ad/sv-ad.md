@@ -1,4 +1,4 @@
-# sv-ad 广告模块
+# 广告模块 `sv-ad`
 
 ## 主要功能
 
@@ -35,29 +35,24 @@
 ::: code-group
 
 ```vue [vue2]
-<template>
-</template>
+<template></template>
 
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   onLoad() {},
-  methods: {
-  },
+  methods: {},
 };
 </script>
 ```
 
 ```vue [vue3]
-<template>
-</template>
+<template></template>
 
 <script setup>
 import { ref } from "vue";
-
 </script>
 ```
 

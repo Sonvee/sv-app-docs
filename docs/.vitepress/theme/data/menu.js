@@ -147,11 +147,11 @@ export const pluginsMenu = {
       link: "/src/plugins/sv-wangeditor/sv-wangeditor",
     },
     {
-      text: "Excel 数据互转",
+      text: "EXCEL&JSON 数据互转",
       link: "/src/plugins/sv-excel-json-each/sv-excel-json-each",
     },
     {
-      text: "Json 数据预览",
+      text: "JSON 预览",
       link: "/src/plugins/sv-json-view/sv-json-view",
     },
     {

@@ -1,4 +1,4 @@
-# sp-html2pdf-render DOM 导出 PDF
+# DOM 导出 PDF [`sp-html2pdf-render`](https://ext.dcloud.net.cn/plugin?id=15087)
 
 基于 `html2canvas` + `jspdf` + `renderjs` 的截图导出 pdf 插件，可根据 dom 盒子 id 截图。
 

@@ -1,4 +1,4 @@
-# sv-intercept-back 返回拦截
+# 返回拦截 [`sv-intercept-back`](https://ext.dcloud.net.cn/plugin?id=16381)
 
 返回拦截 阻止退出 拦截手势滑动物理按键返回
 

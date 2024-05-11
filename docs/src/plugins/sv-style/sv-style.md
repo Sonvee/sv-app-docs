@@ -1,12 +1,12 @@
-# sv-style 样式模块
+# 样式模块 [`sv-style`](https://ext.dcloud.net.cn/plugin?id=17060)
 
 ## 主要功能
 
-> 强烈建议优先前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=xxxxx) 导入示例项目参考一下。
+> 强烈建议优先前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=17060) 导入示例项目参考一下。
 
 ## 安装
 
-1. [插件市场](https://ext.dcloud.net.cn/plugin?id=xxxxx) 中点击 `下载插件并导入HBuildeX`。
+1. [插件市场](https://ext.dcloud.net.cn/plugin?id=17060) 中点击 `下载插件并导入HBuildeX`。
 
 ## 前言
 
@@ -35,29 +35,24 @@
 ::: code-group
 
 ```vue [vue2]
-<template>
-</template>
+<template></template>
 
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   onLoad() {},
-  methods: {
-  },
+  methods: {},
 };
 </script>
 ```
 
 ```vue [vue3]
-<template>
-</template>
+<template></template>
 
 <script setup>
 import { ref } from "vue";
-
 </script>
 ```
 
@@ -71,7 +66,7 @@ import { ref } from "vue";
 
 ## 写在最后
 
-若对插件有任何疑问或者优化建议，欢迎在 [插件评论区](https://ext.dcloud.net.cn/plugin?id=xxxxx#rating) 留言，在插件市场中的私信消息本人可能不经常留意，导致没能及时回复，
+若对插件有任何疑问或者优化建议，欢迎在 [插件评论区](https://ext.dcloud.net.cn/plugin?id=17060#rating) 留言，在插件市场中的私信消息本人可能不经常留意，导致没能及时回复，
 可以加入本人的插件问答 QQ 交流群: 852637893，欢迎 [进群交流](https://qm.qq.com/cgi-bin/qm/qr?k=HD9IXnUruOa5pplF1jAeQsLb9BNnP_DE&jump_from=webapi&authKey=tk61Q5la3EAprdYcUBD7v0PBly795OTcT4UT36XxqcG7pmhGRpE+yFlt75vQBWeY)。
 
 <img width="200" src="https://mp-74bfcbac-6ba6-4f39-8513-8831390ff75a.cdn.bspapp.com/static/qqqun.jpg" alt="交流群:852637893"/>
