@@ -2,7 +2,13 @@
 
 ## 主要功能
 
-> 强烈建议优先前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=17060) 导入示例项目参考一下。
+1. 该模块化样式库插件适用于 `sv-app` 框架体系定制化样式。
+2. 该插件使用 [colorui](https://ext.dcloud.net.cn/plugin?id=239) 作为 css 原子类样式库使用，并扩充了部分自定义的扩展类。
+3. 动画部分主要基于 [animista](https://animista.net/)、colorui 内置的动画、以及部分自定义扩展动画类。
+4. icon 图标部分主要基于 [阿里巴巴矢量库](https://www.iconfont.cn/)、colorui 的字体图标、uni-icons、uni-admin-icons。
+5. 内置主题颜色主要基于 uni.scss、colorui 的主题色、以及部分自定义主题色。
+6. 主题皮肤切换功能（基于 sass）需配合 [sv-client](https://ext.dcloud.net.cn/plugin?id=16530) 或 [sv-admin](https://ext.dcloud.net.cn/plugin?id=16531) 内置组件或方法使用。
+7. 该插件不包含任何的 js 代码，仅包含 css/sass 样式。
 
 ## 安装
 
@@ -10,55 +16,80 @@
 
 ## 前言
 
+本插件适用于 `sv-app` 框架体系定制化样式。
+
 ## 插件兼容性
 
-> `✔️ 实测可行` `❌ 未兼容` `➖ 未实测`
+纯 css/sass 样式
 
-| Vue2 | Vue3 | H5  | App | 微信小程序 |
-| :--: | :--: | :-: | :-: | :--------: |
-|  ✔️  |  ✔️  | ✔️  | ✔️  |     ✔️     |
+## 使用准备
 
-## prop 参数
-
-| 参数 | 类型 | 默认值 | 必填 | 说明 |
-| ---- | ---- | ------ | ---- | ---- |
-|      |      |        |      |      |
-
-## emit 事件
-
-| 事件名 | 参数 | 说明 |
-| ------ | ---- | ---- |
-|        |      |      |
-
-## 使用示例
+1. 在根目录 `App.vue` 文件中引入 `@import '@/uni_modules/sv-style/scss/style.scss';`
+2. 在根目录 `uni.scss` 文件中引入 `@import '@/uni_modules/sv-style/scss/theme.scss';`
+3. 启动动画需要在根目录 `index.html` 文件中引入 `app-loader.css` 样式并将 `id="app"` 的盒子修改成如下：
 
 ::: code-group
 
-```vue [vue2]
-<template></template>
-
-<script>
-export default {
-  data() {
-    return {};
-  },
-  onLoad() {},
-  methods: {},
-};
-</script>
+```vue [App.vue]
+<!-- 根目录 App.vue -->
+<style lang="scss">
+/* 每个页面公共css */
+@import "@/uni_modules/sv-style/scss/style.scss";
+</style>
 ```
 
-```vue [vue3]
-<template></template>
+```scss [uni.scss]
+/* 主题 */
+@import "@/uni_modules/sv-style/scss/theme.scss";
+```
 
-<script setup>
-import { ref } from "vue";
-</script>
+```html [index.html]
+<head>
+  <!-- 引入预加载loading样式 -->
+  <link rel="stylesheet" href="/uni_modules/sv-style/css/app-loader.css" />
+</head>
+<body>
+  <div id="app">
+    <!--app-html-->
+    <div class="app-loader-container">
+      <div class="sv-index-loader"></div>
+      <div class="sv-text-streamer" style="margin-top: 20px;">正在努力往上爬</div>
+    </div>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
 ```
 
 :::
 
+## 主题定制
+
+| 混入          | 描述                    |
+| ------------- | ----------------------- |
+| useTheme      | 动态切换所有主题        |
+| useLightTheme | 只在 light 主题下的样式 |
+| useDarkTheme  | 只在 dark 主题下的样式  |
+
+| 函数     | 参数           | 描述       |
+| -------- | -------------- | ---------- |
+| getTheme | 主题 scss 变量 | 获取主题色 |
+
+> 主题切换功能需要配合框架内置组件 [`sv-page`](../../components/sv-page/sv-page.md)，写法不涉及任何 `js` 逻辑，只需要使用 `scss` 的 `@include`，和内置的 `getTheme` 函数。
+
+### 主题使用示例
+
+```scss
+.card {
+  @include useTheme {
+    box-shadow: 0 2px 4px #{getTheme("sv-shadow-color")}; // 计算、行内连写时等情况下需要使用 sass的 #{} 插值表达式
+    background-color: getTheme("sv-bg-color"); // 普通单属性，直接使用 getTheme 以获取主题色（引号可省略）
+  }
+}
+```
+
 ## 注意事项
+
+1. 主题功能需要配合框架内置组件 [`sv-page`](../../components/sv-page/sv-page.md)。
 
 ## 疑难解答
 
