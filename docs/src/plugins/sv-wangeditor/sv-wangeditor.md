@@ -12,9 +12,9 @@
 
 2. 部署 云对象/数据库 至您的 uniCloud 云服务空间，如果您还不会部署，可移步至 [服务端-云服务空间初始化](../../frame/sv-service/sv-service.md#云服务空间初始化)。
 
-   > 本插件中仅有一个云对象用于删除云存储文件，不使用 uniCloud 云存储的话，可以忽略此步骤，并将本插件根目录中 `uniCloud` 文件夹整个删除
+   > 本插件中仅有一个云对象用于删除云存储文件，不使用 uniCloud 云存储的话，可以忽略此步骤，并将本插件目录中 `uniCloud` 文件夹删除。
 
-3. 在你的项目中安装 `wangEditor` 官方的 node 包。
+3. 在你的项目中安装 [`wangEditor`](https://www.wangeditor.com/v5/for-frame.html#vue3) 官方的两个 node 包。 
 
    ::: code-group
 
@@ -37,7 +37,7 @@
 
 ## 前言
 
-本插件仅推荐 H5 端使用，目前仅支持 vue3
+本插件目前仅支持 vue3，仅推荐 H5 端使用，或者你的 app 是内嵌的 webview 或许也可（尚未实际测试）。
 
 ## 插件兼容性
 
