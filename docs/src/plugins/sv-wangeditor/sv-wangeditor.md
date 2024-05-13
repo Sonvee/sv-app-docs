@@ -4,7 +4,10 @@
 
 ## 主要功能
 
+1. 基于 `wangEditor` 的富文本编辑器，相关具体功能可转至 [`wangEditor 官方示例`](https://www.wangeditor.com/demo/index.html) 中体验。
+
 > 强烈建议优先前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=16444) 导入示例项目参考一下。
+> 示例工程中插件可能不是最新版本，运行之前建议先将示例工程中插件更新至最新版本哦。
 
 ## 安装与部署
 

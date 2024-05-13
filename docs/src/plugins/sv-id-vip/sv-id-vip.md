@@ -13,6 +13,8 @@
 7. vip 用户状态定时任务自动校验
 8. 内置 vip 功能页面
 
+> 本插件没有示例项目，详见 `sv-client` 中相关页面示例。
+
 ## 安装与部署
 
 1. [插件市场](https://ext.dcloud.net.cn/plugin?id=17048) 中点击 `下载插件并导入HBuildeX`。

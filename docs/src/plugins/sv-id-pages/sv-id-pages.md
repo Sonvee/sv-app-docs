@@ -2,19 +2,7 @@
 
 基于 [`uni-id-pages`](https://ext.dcloud.net.cn/plugin?name=uni-id-pages) 魔改的用户体系，新的易读易修改的界面样式，并稍作精简，更适合二次开发。
 
-> 强烈建议优先前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=15141) 导入示例项目参考一下。
-
-## 安装与部署
-
-1. [插件市场](https://ext.dcloud.net.cn/plugin?id=15141) 中点击 `下载插件并导入HBuildeX`。
-2. 部署 云对象/数据库 至您的 uniCloud 云服务空间，如果您还不会部署，可移步至 [服务端-云服务空间初始化](../../frame/sv-service/sv-service.md#云服务空间初始化)。
-
-## 前言
-
-1. 关于 uniCloud 云服务空间的部署相关步骤与问题，已在 [服务端-云服务空间初始化](../../frame/sv-service/sv-service.md#云服务空间初始化) 中详细介绍，此处不再赘述。
-2. 本插件基于 [`uni-id-pages`](https://ext.dcloud.net.cn/plugin?name=uni-id-pages) 二次开发，您可能需要对 [`uni-id`](https://doc.dcloud.net.cn/uniCloud/uni-id/app.html) 用户体系有一定的了解。
-
-## 插件功能
+## 主要功能
 
 > ✅ 已有 ☑️ 待定 ❎ 没有
 
@@ -46,6 +34,19 @@
 
 - ✅ 用户服务协议
 - ✅ 隐私政策条款
+
+> 强烈建议优先前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=15141) 导入示例项目参考一下。
+> 示例工程中插件可能不是最新版本，运行之前建议先将示例工程中插件更新至最新版本哦。
+
+## 安装与部署
+
+1. [插件市场](https://ext.dcloud.net.cn/plugin?id=15141) 中点击 `下载插件并导入HBuildeX`。
+2. 部署 云对象/数据库 至您的 uniCloud 云服务空间，如果您还不会部署，可移步至 [服务端-云服务空间初始化](../../frame/sv-service/sv-service.md#云服务空间初始化)。
+
+## 前言
+
+1. 关于 uniCloud 云服务空间的部署相关步骤与问题，已在 [服务端-云服务空间初始化](../../frame/sv-service/sv-service.md#云服务空间初始化) 中详细介绍，此处不再赘述。
+2. 本插件基于 [`uni-id-pages`](https://ext.dcloud.net.cn/plugin?name=uni-id-pages) 二次开发，您可能需要对 [`uni-id`](https://doc.dcloud.net.cn/uniCloud/uni-id/app.html) 用户体系有一定的了解。
 
 ## 插件兼容性
 

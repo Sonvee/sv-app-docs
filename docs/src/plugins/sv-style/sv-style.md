@@ -10,6 +10,8 @@
 6. 主题皮肤切换功能（基于 sass）需配合 [sv-client](https://ext.dcloud.net.cn/plugin?id=16530) 或 [sv-admin](https://ext.dcloud.net.cn/plugin?id=16531) 内置组件或方法使用。
 7. 该插件不包含任何的 js 代码，仅包含 css/sass 样式。
 
+> 本插件没有示例项目，详见 `sv-client` 或 `sv-admin` 中相关页面示例。
+
 ## 安装
 
 1. [插件市场](https://ext.dcloud.net.cn/plugin?id=17060) 中点击 `下载插件并导入HBuildeX`。
