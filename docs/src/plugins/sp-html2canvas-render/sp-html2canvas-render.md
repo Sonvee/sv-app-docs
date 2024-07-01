@@ -154,7 +154,7 @@ function renderOver(e) {
 
 > 可新建 [`Issue`](https://gitee.com/Sonve/sv-app-docs/issues/new) / [`悬赏`](https://gitee.com/Sonve/sv-app-docs/reward_issues/new) 来 [`发起提问`](https://gitee.com/Sonve/sv-app-docs/issues)
 
-1. 为什么会报 `toDataURL on HTMLCanvasElement` 的错？
+1. 为什么会报 `toDataURL on HTMLCanvasElement 或 The operation is insecure` 的错？
 
    - 如果你要渲染的 dom 盒子中带有不支持跨域的网络图片，html2cavnas 就会报这个画布被污染了的错，需要你的网络图片支持跨域。这里建议要渲染的 dom 盒子中的所有图片（包括网络和本地图片）都经过内置的 `pathToBase64` 或 `urlToBase64` 方法进行转换，base64 可以兼容各端差异，不会存在跨域问题，但是前提是你的网络图片支持跨域，如果你的网络本身就不支持跨域那也没有办法，虽然 html2canvas 提供了相关跨域的配置项，但是实测下来在 uniapp 中无效，所以还是得从解除跨域的根本原因上解决。
      :::tip 关于跨域的题外话
@@ -164,6 +164,8 @@ function renderOver(e) {
        :::
 
    - 如果你的图片是以盒子的 background: url(xxx) 形式作为背景图片的，也需要将其转为 base64 ，示例工程中示例四中有说明。
+   - 其实主要还是图片不支持跨域导致的问题，如果你的图片已支持跨域，嫌弃又要转base64多走一步麻烦，也可以直接将图片的网络地址写在img标签的src中（前提是图片已经支持跨域，只要还报这个错，就说明解除跨域没有正常配置成功，让你的后端小伙伴加加油吧），实测h5和安卓app没有问题，转base64终归到底依然是为了解决多端兼容而诞生的操作，建议在实际开发中转与不转都实测一番，以最终成果为效。
+   - 不知道到底是不是图片跨域？实在不行你就把你代码中网络图片的地址都换成这张解除了跨域的图片试试：https://img.yzcdn.cn/vant/cat.jpeg 这张图如果没问题说明解除跨域的图片是可以正常截图运行的。
 
 2. 截出来的图片模糊怎么办？
 
