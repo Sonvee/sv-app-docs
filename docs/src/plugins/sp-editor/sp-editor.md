@@ -11,7 +11,11 @@
 5. 实时获取当前编辑器内容（html 文本，text 纯文本）
 6. 修复原 editor 组件部分缺陷（如开启只读后仍能操作图片、小程序长按无法粘贴的问题等）
 7. 相对轻易实现对插入图片的处理（上传至服务器等）
-8. 其他
+8. 插入视频功能已发布，有需求的请保持改插件版本为最新
+
+:::tip
+本插件已趋于稳定版，群友们已然踩遍了各种坑，本插件也在不断优化中。目前若出现未见过的报错，大概率是代码哪里写错了或者编码不规范导致的。请仔细阅读文档，以及疑难解答部分。也可进群讨论。
+:::
 
 > 强烈建议优先前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=14726) 导入示例项目参考一下。
 > 示例工程中插件可能不是最新版本，运行之前建议先将示例工程中插件更新至最新版本哦。
@@ -88,6 +92,7 @@
 | scriptSuper     | 上标     |
 | direction       | 文本方向 |
 | image           | 图片     |
+| video           | 视频     |
 | link            | 超链接   |
 | undo            | 撤销     |
 | redo            | 重做     |
@@ -105,15 +110,27 @@
 | ---------- | ------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
 | init       | editor：编辑器实例；id：编辑器 id（在 v-for 循环渲染编辑器时，可以通过 id 来作区分处理）                           | 编辑器就绪回调                                 |
 | upinImage  | tempFiles：包含插入图片的本地临时路径的对象（开发者可用此路径上传文件至服务器）；editor：编辑器实例；id：编辑器 id | 插入图片时回调                                 |
+| upinVideo  | tempFilePath：本地视频临时地址（开发者可用此路径上传文件至服务器）；其他同上 upinImage                             | 插入视频时回调                                 |
 | input      | e：{ html, text } 当前内容的 html 文本、 text 文本；id：编辑器 id                                                  | 输入内容时回调                                 |
 | addLink    | e：{ text, href } 添加的链接描述、链接地址；id：编辑器 id                                                          | 添加超链接回调，toolbar 需要开启 `link` 工具   |
 | exportHtml | e：导出的 html 内容；id：编辑器 id                                                                                 | 工具栏导出回调，toolbar 需要开启 `export` 工具 |
 
+## 插件内置工具方法
+
+| 方法名              | 参数                           | 返回         | 说明                                                     |
+| ------------------- | ------------------------------ | ------------ | -------------------------------------------------------- |
+| handleHtmlWithVideo | html：要进行处理的富文本字符串 | 返回处理结果 | 将含有特殊占位图片形式视频的富文本转换成正常视频的富文本 |
+
 :::warning
 你需要在 upinImage 回调函数中处理插入的图片，否则图片将不会显示在编辑器中。详情可见下列 [使用示例](#使用示例) 中。
+插入视频 upinVideo 时同上。
 :::
 
 ## 使用示例
+
+:::tip
+此处仅为简单使用示例，更多详情请前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=14726) 导入示例项目运行参考
+:::
 
 ::: code-group
 
@@ -124,7 +141,7 @@
       <sp-editor
         :toolbar-config="{
           excludeKeys: ['direction', 'date', 'lineHeight', 'letterSpacing', 'listCheck'],
-          iconSize: '18px',
+          iconSize: '18px'
         }"
         @init="initEditor"
         @input="inputOver"
@@ -141,8 +158,8 @@
 export default {
   data() {
     return {
-      editorIns: null,
-    };
+      editorIns: null
+    }
   },
   methods: {
     /**
@@ -151,7 +168,7 @@ export default {
      */
     inputOver(e) {
       // 可以在此处获取到编辑器已编辑的内容
-      console.log("==== inputOver :", e);
+      console.log('==== inputOver :', e)
     },
     /**
      * 超出最大内容限制
@@ -159,7 +176,7 @@ export default {
      */
     overMax(e) {
       // 若设置了最大字数限制，可在此处触发超出限制的回调
-      console.log("==== overMax :", e);
+      console.log('==== overMax :', e)
     },
     /**
      * 编辑器就绪
@@ -168,17 +185,17 @@ export default {
      * @tutorial 相关api https://uniapp.dcloud.net.cn/api/media/editor-context.html
      */
     initEditor(editor) {
-      this.editorIns = editor; // 保存编辑器实例
+      this.editorIns = editor // 保存编辑器实例
       // 保存编辑器实例后，可以在此处获取后端数据，并赋值给编辑器初始化内容
-      this.preRender();
+      this.preRender()
     },
     preRender() {
       setTimeout(() => {
         // 异步获取后端数据后，初始化编辑器内容
         this.editorIns.setContents({
-          html: `<div>&nbsp;&nbsp;猫猫<img src="https://img.yzcdn.cn/vant/cat.jpeg"/></div>`,
-        });
-      }, 1000);
+          html: `<div>&nbsp;&nbsp;猫猫<img src="https://img.yzcdn.cn/vant/cat.jpeg"/></div>`
+        })
+      }, 1000)
     },
     /**
      * 直接运行示例工程插入图片无法正常显示的看这里
@@ -198,17 +215,17 @@ export default {
       // 注意微信小程序的图片路径是在tempFilePath字段中
       editorCtx.insertImage({
         src: tempFiles[0].tempFilePath,
-        width: "80%", // 默认不建议铺满宽度100%，预留一点空隙以便用户编辑
-        success: function () {},
-      });
+        width: '80%', // 默认不建议铺满宽度100%，预留一点空隙以便用户编辑
+        success: function () {}
+      })
       // #endif
 
       // #ifndef MP-WEIXIN
       editorCtx.insertImage({
         src: tempFiles[0].path,
-        width: "80%", // 默认不建议铺满宽度100%，预留一点空隙以便用户编辑
-        success: function () {},
-      });
+        width: '80%', // 默认不建议铺满宽度100%，预留一点空隙以便用户编辑
+        success: function () {}
+      })
       // #endif
 
       /**
@@ -242,24 +259,24 @@ export default {
      */
     exportHtml(e) {
       uni.navigateTo({
-        url: "/pages/out/out",
+        url: '/pages/out/out',
         success(res) {
           // 传至导出页面解析即可
-          res.eventChannel.emit("e-transmit-html", {
-            data: e,
-          });
-        },
-      });
+          res.eventChannel.emit('e-transmit-html', {
+            data: e
+          })
+        }
+      })
     },
     /**
      * 添加超链接
      * @param {Object} e { text: '链接描述', href: '链接地址' }
      */
     addLink(e) {
-      console.log("==== addLink :", e);
-    },
-  },
-};
+      console.log('==== addLink :', e)
+    }
+  }
+}
 </script>
 ```
 
@@ -270,7 +287,7 @@ export default {
       <sp-editor
         :toolbar-config="{
           excludeKeys: ['direction', 'date', 'lineHeight', 'letterSpacing', 'listCheck'],
-          iconSize: '18px',
+          iconSize: '18px'
         }"
         @init="initEditor"
         @input="inputOver"
@@ -284,9 +301,9 @@ export default {
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 
-const editorIns = ref(null);
+const editorIns = ref(null)
 
 /**
  * 获取输入内容
@@ -294,7 +311,7 @@ const editorIns = ref(null);
  */
 function inputOver(e) {
   // 可以在此处获取到编辑器已编辑的内容
-  console.log("==== inputOver :", e);
+  console.log('==== inputOver :', e)
 }
 
 /**
@@ -303,7 +320,7 @@ function inputOver(e) {
  */
 function overMax(e) {
   // 若设置了最大字数限制，可在此处触发超出限制的回调
-  console.log("==== overMax :", e);
+  console.log('==== overMax :', e)
 }
 
 /**
@@ -313,18 +330,18 @@ function overMax(e) {
  * @tutorial 相关api https://uniapp.dcloud.net.cn/api/media/editor-context.html
  */
 function initEditor(editor) {
-  editorIns.value = editor; // 保存编辑器实例
+  editorIns.value = editor // 保存编辑器实例
   // 保存编辑器实例后，可以在此处获取后端数据，并赋值给编辑器初始化内容
-  preRender();
+  preRender()
 }
 
 function preRender() {
   setTimeout(() => {
     // 异步获取后端数据后，初始化编辑器内容
     editorIns.value.setContents({
-      html: `<div>&nbsp;&nbsp;猫猫<img src="https://img.yzcdn.cn/vant/cat.jpeg"/></div>`,
-    });
-  }, 1000);
+      html: `<div>&nbsp;&nbsp;猫猫<img src="https://img.yzcdn.cn/vant/cat.jpeg"/></div>`
+    })
+  }, 1000)
 }
 
 /**
@@ -345,17 +362,17 @@ function upinImage(tempFiles, editorCtx) {
   // 注意微信小程序的图片路径是在tempFilePath字段中
   editorCtx.insertImage({
     src: tempFiles[0].tempFilePath,
-    width: "80%", // 默认不建议铺满宽度100%，预留一点空隙以便用户编辑
-    success: function () {},
-  });
+    width: '80%', // 默认不建议铺满宽度100%，预留一点空隙以便用户编辑
+    success: function () {}
+  })
   // #endif
 
   // #ifndef MP-WEIXIN
   editorCtx.insertImage({
     src: tempFiles[0].path,
-    width: "80%", // 默认不建议铺满宽度100%，预留一点空隙以便用户编辑
-    success: function () {},
-  });
+    width: '80%', // 默认不建议铺满宽度100%，预留一点空隙以便用户编辑
+    success: function () {}
+  })
   // #endif
 
   /**
@@ -390,14 +407,14 @@ function upinImage(tempFiles, editorCtx) {
  */
 function exportHtml(e) {
   uni.navigateTo({
-    url: "/pages/out/out",
+    url: '/pages/out/out',
     success(res) {
       // 传至导出页面解析即可
-      res.eventChannel.emit("e-transmit-html", {
-        data: e,
-      });
-    },
-  });
+      res.eventChannel.emit('e-transmit-html', {
+        data: e
+      })
+    }
+  })
 }
 
 /**
@@ -405,7 +422,7 @@ function exportHtml(e) {
  * @param {Object} e { text: '链接描述', href: '链接地址' }
  */
 function addLink(e) {
-  console.log("==== addLink :", e);
+  console.log('==== addLink :', e)
 }
 </script>
 ```
@@ -422,7 +439,10 @@ function addLink(e) {
 
 2. 如遇到在内置浏览器中发生无法拖动调节颜色板的问题，只需调出开发者调试面板，点击重置左上角选择 dom 的箭头后，便能调出模拟器手势光标，便可正常拖动了。
 
-3. 有插入视频的需求，暂时可能无法实现，官方给予的回复是：目前各端的 eidtor 组件都不能直接插入视频，编辑时可以采用视频封面占位，并在图片中保存视频信息，在预览时再还原为视频。
+3. 关于插入视频 🔥 一直是使用 uni-editor 让人头疼的问题，不少群友让我新增这么一项功能，在 🐦‍⬛ 了一段时间后，还是决定回应一下。本插件以在富文本编辑过程中使用图片进行替换，待编辑完成后发布富文本内容时，调用内部 `handleHtmlWithVideo` 方法进行一键处理视频的富文本节点进行实现。
+
+   - 推荐在编辑完成后，确定发布富文本内容的时机进行 `handleHtmlWithVideo` 处理，而非在编辑过程中进行。
+   - 更多详见示例工程中的示例一。
 
 4. 在 H5 中，由于官方 editor 内部是使用 unpkg 加载 quill.min.js、image-resize.min.js 两个依赖，可能会存在国内无法访问 unpkg 的资源，导致 editor 不正常的问题，在此我已将该两个依赖包放在了组件的 uni_modules/sp-editor/static 文件夹下，希望在 H5 端正常且稳定使用的小伙伴可以在 index.html 或 template.h5.html 中引入该本地 cdn 资源。
 
@@ -458,10 +478,11 @@ function addLink(e) {
 
    - 如果您是微信小程序的话，那可能有些抱歉，这是微信小程序官方的 bug，可前往问答帖 [uniapp 的 editor 组件插入的 a 标签会被删除 href 属性](https://ask.dcloud.net.cn/question/151737)，uniapp 官方人员实测是微信小程序本身的问题，可能需要等微信官方修复了。
    - 不是微信小程序也不能跳转？那我猜你可能正处于编辑中，正在编辑的时候是无法跳转的，你需要导出当前编辑好的 html（建议用一个好些的解析器，比如 [`mp-html`](https://ext.dcloud.net.cn/plugin?id=805)，有的简陋的解析器或者官方自带的 rich-text 组件无法解析部分标签如 a 标签），或者开启编辑器的只读模式，才能正常跳转。（可以在示例工程的示例一中体验下）
+   - 说实话，其实可能微信自动去除 a 标签的 href 属性是有意为之，毕竟小程序不允许如此随意的跳转外链。若实在有必要跳转，使用类似于插入视频那样的思路先将 href 属性保存起来，在确认完成编辑后进行替换或许能实现跳转。（其实已经有群友这样做了）
 
 2. 怎么添加视频？
 
-   - 我也无能为力了，官方实在是不支持插入视频，更没有像插入图片那样的 api，我也尝试过很多方式，但是当前确实无法实现像插入图片那般的插入视频。如果您有思路还希望告知。
+   - 请见上述 [`注意事项`](#注意事项) 第 3 点。
 
 3. 字体怎么切换？
 
