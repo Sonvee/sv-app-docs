@@ -11,6 +11,8 @@
 3. 真机物理按键返回
 4. 真机手势滑动返回
 5. 可选择性开启或关闭拦截
+6. 自定义拦截前操作
+7. 自定义返回操作
 
 > 强烈建议优先前往 [`插件市场`](https://ext.dcloud.net.cn/plugin?id=16381) 导入示例项目参考一下。
 > 示例工程中插件可能不是最新版本，运行之前建议先将示例工程中插件更新至最新版本哦。
@@ -31,18 +33,18 @@
 
 ## prop 参数
 
-| 参数    | 类型    | 默认值       | 必填 | 说明         |
-| ------- | ------- | ------------ | ---- | ------------ |
-| title   | String  | 系统提示     | 否   | 弹窗标题     |
-| content | String  | 确定返回吗？ | 否   | 弹窗内容     |
-| show    | Boolean | true         | 否   | 是否开启拦截 |
+| 参数            | 类型     | 默认值 | 必填 | 说明           |
+| --------------- | -------- | ------ | ---- | -------------- |
+| show            | Boolean  | true   | 否   | 是否开启拦截   |
+| beforeIntercept | Function | true   | 是   | 拦截前操作     |
+| customBack      | Function | true   | 否   | 自定义返回操作 |
 
 ## emit 事件
 
-| 事件名      | 参数 | 说明             |
-| ----------- | ---- | ---------------- |
-| backConfirm | 无   | 点击确认返回回调 |
-| backCancel  | 无   | 点击取消返回回调 |
+| 事件名      | 参数 | 说明         |
+| ----------- | ---- | ------------ |
+| backConfirm | 无   | 确认返回回调 |
+| backCancel  | 无   | 取消返回回调 |
 
 ## 使用示例
 
@@ -53,7 +55,7 @@
   <view class="next">
     <button @click="onback">点击返回</button>
     <button @click="onleave">直接返回</button>
-    <sv-intercept-back :show="interceptFlag" @backConfirm="backConfirm" @backCancel="backCancel"></sv-intercept-back>
+    <sv-intercept-back :show="interceptFlag" :beforeIntercept="beforeIntercept" @backConfirm="backConfirm" @backCancel="backCancel"></sv-intercept-back>
   </view>
 </template>
 
@@ -61,29 +63,43 @@
 export default {
   data() {
     return {
-      interceptFlag: true,
-    };
+      interceptFlag: true
+    }
   },
-  onLoad() {},
   methods: {
-    onback() {
-      uni.navigateBack();
+    async beforeIntercept() {
+      const isBack = await new Promise((callback) => {
+        uni.showModal({
+          title: '系统提示',
+          content: '是否退出当前页面',
+          success: ({ confirm }) => {
+            callback(confirm)
+          }
+        })
+      })
+      return isBack
+    },
+    customBack() {
+      console.log('==== customBack')
     },
     backConfirm() {
-      console.log("==== backConfirm :");
+      console.log('==== backConfirm')
     },
     backCancel() {
-      console.log("==== backCancel :");
+      console.log('==== backCancel')
+    },
+    onback() {
+      uni.navigateBack()
     },
     onleave() {
-      this.interceptFlag = false;
-      // 建议此处添加一个短暂的延时，以确保interceptFlag为false时拦截器成功卸载
+      this.interceptFlag = false
+      // 添加一个短暂的延时
       setTimeout(() => {
-        uni.navigateBack();
-      }, 100);
-    },
-  },
-};
+        uni.navigateBack()
+      }, 200)
+    }
+  }
+}
 </script>
 ```
 
@@ -92,33 +108,50 @@ export default {
   <view class="next">
     <button @click="onback">点击返回</button>
     <button @click="onleave">直接返回</button>
-    <sv-intercept-back :show="interceptFlag" @backConfirm="backConfirm" @backCancel="backCancel"></sv-intercept-back>
+    <sv-intercept-back :show="interceptFlag" :beforeIntercept="beforeIntercept" @backConfirm="backConfirm" @backCancel="backCancel"></sv-intercept-back>
   </view>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref } from 'vue'
 
-const interceptFlag = ref(true);
+const interceptFlag = ref(true)
 
-function onback() {
-  uni.navigateBack();
+async function beforeIntercept() {
+  const isBack = await new Promise((callback) => {
+    uni.showModal({
+      title: '系统提示',
+      content: '是否退出当前页面',
+      success: ({ confirm }) => {
+        callback(confirm)
+      }
+    })
+  })
+  return isBack
+}
+
+function customBack() {
+  console.log('==== customBack')
 }
 
 function backConfirm() {
-  console.log("==== backConfirm :");
+  console.log('==== backConfirm')
 }
 
 function backCancel() {
-  console.log("==== backCancel :");
+  console.log('==== backCancel')
+}
+
+function onback() {
+  uni.navigateBack()
 }
 
 function onleave() {
-  interceptFlag.value = false;
+  interceptFlag.value = false
   // 建议此处添加一个短暂的延时，以确保interceptFlag为false时拦截器成功卸载
   setTimeout(() => {
-    uni.navigateBack();
-  }, 100);
+    uni.navigateBack()
+  }, 200)
 }
 </script>
 ```
@@ -132,6 +165,18 @@ function onleave() {
 2. 在 uniapp 的页面生命周期中有个[onBackPress](https://uniapp.dcloud.net.cn/tutorial/page.html#lifecycle)，若只想做页面单独处理返回来源是 backbutton(按键返回)还是 navigateBack 的话，可以参考官方的这个[onBackPress](https://uniapp.dcloud.net.cn/tutorial/page.html#lifecycle)生命周期，但是貌似局限性会蛮大的，本人未仔细研究过，只能祝开发顺利了。
 
 ## 疑难解答
+
+1. 在 H5 端有报错 `back:confirm / back:cancel`
+
+   - 该报错是主动抛出异常，不影响运行，可忽略。因本插件在 H5 与 APP 端是基于 uni.addInterceptor 创建 navigateBack 拦截器实现，本人实测在 invoke 阶段适当的位置进行主动 throw 抛出异常来终止拦截，可完美实现返回拦截需求。
+   - back:confirm 在确认退出页面后抛出
+   - back:cancel 在取消退出页面后抛出
+   - 若开发者对异常有代码洁癖，本人暂时也没有什么更好的实现方式。如有更好的拦截方式还望加 QQ 群讨论。
+
+2. 在微信小程序端，主动调用 uni.navigateBack ，在真机测试有报错 `navigateBack:fail:navigateBack intercepted` 是怎么回事？
+   - 本插件在微信小程序使用 page-container 方式拦截返回，该异常触发的具体原因不明，但是实测不影响运行。（在开发者工具上无该报错）
+   - 该报错也只在开发者逻辑调用 uni.navigateBack 会抛出，点击原生导航栏的返回、手势滑动、物理返回时都不会报错。
+   - 反正该异常也不会影响运行，本人暂时也没有什么更好的实现方式，个人感觉可忽略。
 
 > 可新建 [`Issue`](https://gitee.com/Sonve/sv-app-docs/issues/new) / [`悬赏`](https://gitee.com/Sonve/sv-app-docs/reward_issues/new) 来 [`发起提问`](https://gitee.com/Sonve/sv-app-docs/issues)
 
