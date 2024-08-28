@@ -31,17 +31,19 @@
 
 ## prop 参数
 
-| 参数       | 类型    | 默认值                                             | 必填 | 说明                                        |
-| ---------- | ------- | -------------------------------------------------- | ---- | ------------------------------------------- |
-| sid        | String  | sign-board                                         | 否   | 签字板 id，用于多签名场景下作为区分         |
-| bgImg      | String  |                                                    | 否   | 背景水印图，优先级大于 bgColor              |
-| bgColor    | String  |                                                    | 否   | 背景纯色底色，为空则透明                    |
-| horizontal | Boolean | false                                              | 否   | 是否横屏                                    |
-| showMark   | Boolean | true                                               | 否   | 是否显示水印                                |
-| markText   | Array   | []                                                 | 否   | 水印内容，可多行，示例 ['水印 1', '水印 2'] |
-| markStyle  | Object  | 详见 [markStyle 水印样式](#markstyle-水印样式)     | 否   | 水印样式                                    |
-| penStyle   | Object  | 详见 [penStyle 画笔样式](#penstyle-画笔样式)       | 否   | 画笔样式                                    |
-| expFile    | Object  | 详见 [expFile 导出图片配置](#expfile-导出图片配置) | 否   | 导出图片配置                                |
+| 参数       | 类型    | 默认值                                             | 必填 | 说明                                                                    |
+| ---------- | ------- | -------------------------------------------------- | ---- | ----------------------------------------------------------------------- |
+| sid        | String  | sign-board                                         | 否   | 签字板 id，用于多签名场景下作为区分                                     |
+| bgImg      | String  |                                                    | 否   | 背景水印图，优先级大于 bgColor                                          |
+| bgColor    | String  |                                                    | 否   | 背景纯色底色，为空则透明                                                |
+| horizontal | Boolean | false                                              | 否   | 是否横屏                                                                |
+| showMark   | Boolean | true                                               | 否   | 是否显示水印                                                            |
+| markText   | Array   | []                                                 | 否   | 水印内容，可多行，示例 ['水印 1', '水印 2']                             |
+| markStyle  | Object  | 详见 [markStyle 水印样式](#markstyle-水印样式)     | 否   | 水印样式                                                                |
+| penStyle   | Object  | 详见 [penStyle 画笔样式](#penstyle-画笔样式)       | 否   | 画笔样式                                                                |
+| expFile    | Object  | 详见 [expFile 导出图片配置](#expfile-导出图片配置) | 否   | 导出图片配置                                                            |
+| needBack   | Boolean | true                                               | 否   | 确认签名后是否需要自动触发返回                                          |
+| popupMode  | Boolean | false                                              | 否   | 是否是弹窗模式（弹窗模式关闭自带控制栏），开启弹窗模式建议关闭 needBack |
 
 ### markStyle 水印样式
 
@@ -89,15 +91,7 @@
 ```vue [vue2]
 <template>
   <view class="sign">
-    <sp-sign-board
-      ref="signBoardRef"
-      sid="sign-board"
-      horizontal
-      bgColor="#ffffff"
-      :mark-text="markText"
-      @reset="reset"
-      @firstTouchStart="firstTouchStart"
-    ></sp-sign-board>
+    <sp-sign-board ref="signBoardRef" sid="sign-board" horizontal bgColor="#ffffff" :mark-text="markText" @reset="reset" @firstTouchStart="firstTouchStart"></sp-sign-board>
   </view>
 </template>
 
@@ -105,86 +99,78 @@
 export default {
   data() {
     return {
-      markText: "",
-    };
+      markText: ''
+    }
   },
   onLoad() {
     // 生成水印内容
-    this.refreshMark();
+    this.refreshMark()
   },
   methods: {
     refreshMark() {
-      const currentDate = new Date();
-      const year = currentDate.getFullYear();
-      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-      const day = String(currentDate.getDate()).padStart(2, "0");
-      const hours = String(currentDate.getHours()).padStart(2, "0");
-      const minutes = String(currentDate.getMinutes()).padStart(2, "0");
-      const seconds = String(currentDate.getSeconds()).padStart(2, "0");
+      const currentDate = new Date()
+      const year = currentDate.getFullYear()
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0')
+      const day = String(currentDate.getDate()).padStart(2, '0')
+      const hours = String(currentDate.getHours()).padStart(2, '0')
+      const minutes = String(currentDate.getMinutes()).padStart(2, '0')
+      const seconds = String(currentDate.getSeconds()).padStart(2, '0')
 
-      this.markText = [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds}`];
+      this.markText = [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds}`]
     },
     firstTouchStart() {
       // 在第一次开始触碰时，更新一下时间水印，防止滞留时间太长造成时间误差（非必要）
-      this.refreshMark();
+      this.refreshMark()
       // 手动调用组件内绘制水印方法重新绘制
-      this.$refs.signBoardRef.drawMark(this.markText);
+      this.$refs.signBoardRef.drawMark(this.markText)
     },
     reset() {
-      this.refreshMark();
-    },
-  },
-};
+      this.refreshMark()
+    }
+  }
+}
 </script>
 ```
 
 ```vue [vue3]
 <template>
   <view class="sign">
-    <sp-sign-board
-      ref="signBoardRef"
-      sid="sign-board"
-      horizontal
-      bgColor="#ffffff"
-      :mark-text="markText"
-      @reset="reset"
-      @firstTouchStart="firstTouchStart"
-    ></sp-sign-board>
+    <sp-sign-board ref="signBoardRef" sid="sign-board" horizontal bgColor="#ffffff" :mark-text="markText" @reset="reset" @firstTouchStart="firstTouchStart"></sp-sign-board>
   </view>
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { onLoad } from "@dcloudio/uni-app";
+import { ref } from 'vue'
+import { onLoad } from '@dcloudio/uni-app'
 
-const markText = ref([]);
-const signBoardRef = ref();
+const markText = ref([])
+const signBoardRef = ref()
 
 onLoad(() => {
-  refreshMark();
-});
+  refreshMark()
+})
 
 function refreshMark() {
-  const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-  const day = String(currentDate.getDate()).padStart(2, "0");
-  const hours = String(currentDate.getHours()).padStart(2, "0");
-  const minutes = String(currentDate.getMinutes()).padStart(2, "0");
-  const seconds = String(currentDate.getSeconds()).padStart(2, "0");
+  const currentDate = new Date()
+  const year = currentDate.getFullYear()
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0')
+  const day = String(currentDate.getDate()).padStart(2, '0')
+  const hours = String(currentDate.getHours()).padStart(2, '0')
+  const minutes = String(currentDate.getMinutes()).padStart(2, '0')
+  const seconds = String(currentDate.getSeconds()).padStart(2, '0')
 
-  markText.value = [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds}`];
+  markText.value = [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds}`]
 }
 
 function firstTouchStart() {
   // 在第一次开始触碰时，更新一下时间水印，防止滞留时间太长造成时间误差（非必要）
-  refreshMark();
+  refreshMark()
   // 手动调用组件内绘制水印方法重新绘制
-  signBoardRef.value.drawMark(markText.value);
+  signBoardRef.value.drawMark(markText.value)
 }
 
 function reset() {
-  refreshMark();
+  refreshMark()
 }
 </script>
 ```
@@ -204,6 +190,14 @@ function reset() {
 1. 把签字面板放进了弹窗中，第一次打开弹窗签字正常，关闭弹窗后再打开就不正常了。
 
    - 有可能是签字板渲染与销毁异常导致的，需要你在关闭弹窗时将签字板给 v-if="false" 销毁掉，开启后重新渲染一下。
+
+2. 弹窗模式 popupMode 开启后，建议关闭自动返回 needBack，弹窗模式下自带的控制栏将会隐藏，此时需要你自定义控制按钮，可以参考示例工程中示例二。
+
+:::warning
+在微信小程序端，开启弹窗模式时要注意签字板的初始化与销毁，具体可参考示例工程中示例二。否则会导致 canvas 初始化失败，宽高为 0 导致无法生成签名的问题（微信小程序实属坑）。
+
+切记在确认签字后切勿立马关闭弹窗，需要等正确获取到签字数据后再关闭弹窗，否则签字图片还没生产完成，canvas 就被关掉了导致无法正常获取签字图片。
+:::
 
 ## 写在最后
 
