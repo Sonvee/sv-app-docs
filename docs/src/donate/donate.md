@@ -9,11 +9,11 @@
 ## 扫码捐赠
 
 <div style="display: inline-block; margin-right: 120px;">
-  <img style="width: 250px; height: 350px;" src="http://qiniu.sonve.asia/qrcode/paywx.jpg" />
+  <img style="width: 250px; height: 350px;" src="https://qiniu.sonve.asia/qrcode/paywx.jpg" />
   <div style="text-align: center; line-height: 3;">微信</div>
 </div>
 
 <div style="display: inline-block;">
-  <img style="width: 250px; height: 350px;" src="http://qiniu.sonve.asia/qrcode/payali.jpg" />
+  <img style="width: 250px; height: 350px;" src="https://qiniu.sonve.asia/qrcode/payali.jpg" />
   <div style="text-align: center; line-height: 3;">支付宝</div>
 </div>
