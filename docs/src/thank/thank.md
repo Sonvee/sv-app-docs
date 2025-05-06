@@ -11,10 +11,10 @@
 <table v-if="data && data.donor">
   <thead>
     <tr>
-      <th>捐赠者</th>
-      <th>金额</th>
-      <th>留言</th>
-      <th>链接</th>
+      <th style="min-width: 120px">捐赠者</th>
+      <th style="min-width: 100px">金额</th>
+      <th style="min-width: 200px">留言</th>
+      <th style="min-width: 180px;">链接</th>
     </tr>
   </thead>
   <tbody>
@@ -22,7 +22,9 @@
       <td>{{ donor.name }}</td>
       <td>{{ donor.money }}</td>
       <td>{{ donor.message }}</td>
-      <td>{{ donor.link }}</td>
+      <td style="word-wrap:break-word; word-break: break-all;">
+        <a :href="donor.link" target="_blank" rel="noopener noreferrer">{{ donor.link }}</a>
+      </td>
     </tr>
   </tbody>
 </table>
