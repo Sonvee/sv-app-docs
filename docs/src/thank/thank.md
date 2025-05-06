@@ -12,6 +12,7 @@
   <thead>
     <tr>
       <th>捐赠者</th>
+      <th>金额</th>
       <th>留言</th>
       <th>链接</th>
     </tr>
@@ -19,6 +20,7 @@
   <tbody>
     <tr v-for="(donor, index) in data.donor">
       <td>{{ donor.name }}</td>
+      <td>{{ donor.money }}</td>
       <td>{{ donor.message }}</td>
       <td>{{ donor.link }}</td>
     </tr>
